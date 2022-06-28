@@ -390,7 +390,7 @@ private:
         //==============================================================================
        #if JUCE_AUV3_VIEW_CONFIG_SUPPORTED
         JUCE_BEGIN_IGNORE_WARNINGS_GCC_LIKE ("-Wunguarded-availability", "-Wunguarded-availability-new")
-        static NSIndexSet* getSupportedViewConfigurations (id self, SEL, NSArray<AUAudioUnitViewConfiguration*>* configs) { return _this (self)->getSupportedViewConfigurations (configs); }
+        static NSIndexSet* getSupportedViewConfigurations (id self, SEL, NSArray<AUAudioUnitViewConfiguration*>* configs) { return [NSIndexSet indexSet]; }
         static void selectViewConfiguration (id self, SEL, AUAudioUnitViewConfiguration* config)                          { _this (self)->selectViewConfiguration (config); }
         JUCE_END_IGNORE_WARNINGS_GCC_LIKE
        #endif
@@ -887,6 +887,8 @@ public:
     JUCE_BEGIN_IGNORE_WARNINGS_GCC_LIKE ("-Wunguarded-availability", "-Wunguarded-availability-new")
     NSIndexSet* getSupportedViewConfigurations (NSArray<AUAudioUnitViewConfiguration*>* configs) override
     {
+      return [NSIndexSet indexSet];
+
         auto supportedViewIndecies = [[NSMutableIndexSet alloc] init];
         auto n = [configs count];
 
